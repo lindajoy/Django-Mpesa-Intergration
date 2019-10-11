@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 import requests
 from requests.auth import HTTPBasicAuth
 import json
@@ -36,7 +36,7 @@ def lipa_na_mpesa_online(request):
     }
 
     response = requests.post(api_url,json= request,headers=headers)
-    return HttpResponse('sucess')
+    return HttpResponse('success')
 
 @csrf_exempt
 def register_urls(request):
@@ -45,8 +45,8 @@ def register_urls(request):
     headers ={'Authorization':'Bearer %s' % access_token}
     options ={'ShortCode':LipanaMpesaPpassword.Business_short_code,
               'ResponseType':"Completed",
-              'ConfirmationURL':"http://127.0.0.1:8000/api/v1/c2b/confirmation",
-              "ValidationURL":"http://127.0.0.1:8000/api/v1/c2b/confirmation"}
+              'ConfirmationURL':"http://3a3b1e95.ngrok.io/api/v1/c2b/confirmation",
+              "ValidationURL":"http://3a3b1e95.ngrok.io/api/v1/c2b/confirmation"}
 
     response = requests.post(api_url,json=options,headers=headers)
 
